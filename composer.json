@@ -10,7 +10,10 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.0"
+        "laravel/ui": "^4.0",
+        "mcamara/laravel-localization": "^1.7",
+        "thiagocordeiro/laravel-translator": "^1.2",
+        "yajra/laravel-datatables-oracle": "10.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
