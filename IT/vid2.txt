@@ -1,0 +1,10 @@
+
+// vid 3
+//-----install 3 packages
+-laravel database
+-laravel mcamara
+-laravel translator
+
+// vid 4
+//----customize and install admin views
+- create some folder of controller and views
