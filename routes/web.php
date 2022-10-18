@@ -22,19 +22,4 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-
-
-Route::prefix('admin')->name('admin.')->group(function () {
-
-    Route::middleware('guest:admin')->group(function () {
-        Route::get('/login', [AdminController::class, 'loginAdmin'])->name('login');
-        Route::post('/check', [AdminController::class, 'check'])->name('ckeck');
-        Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
-    });
-    Route::middleware('auth:admin')->group(function () {
-        Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    });
-});

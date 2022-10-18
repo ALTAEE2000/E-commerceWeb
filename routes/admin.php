@@ -3,6 +3,8 @@
 // use App\Http\Controllers\Admin\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +23,15 @@ Auth::routes();
 
 
 
+Route::prefix('admin')->name('admin.')->group(function () {
 
-// Route::get('admin/login',  [LoginController::class, 'getLogin'])->name('admin.login');
-// Route::post('admin/postLogin',  [LoginController::class, 'postLogin'])->name('admin.post.login');
+    Route::middleware('guest:admin')->group(function () {
+        Route::get('/login', [AdminController::class, 'loginAdmin'])->name('login');
+        Route::post('/check', [AdminController::class, 'check'])->name('ckeck');
+        Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+    });
 
-
-
-// Route::group(['namespace' => 'dashboard',  'middleware' => 'auth:admin'], function () {
-//     Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('admin.dashboard');
-// });
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    });
+});
