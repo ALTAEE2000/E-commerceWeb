@@ -8,3 +8,15 @@
 // vid 4
 //----customize and install admin views
 - create some folder of controller and views
+
+
+
+vid 5 ,  6 , 7,
+//------admin panel
+create login and logout
+create controller for dashboard and admin
+create guards for admin
+
+vid 8
+//------
+-creating 2  table languages and mainCategories
