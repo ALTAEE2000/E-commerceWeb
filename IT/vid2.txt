@@ -20,3 +20,10 @@ create guards for admin
 vid 8
 //------
 -creating 2  table languages and mainCategories
+
+
+
+vid 9
+//----------
+create index for langauges and create model and controller for it
+after we create that we connect between the model and db and controller
