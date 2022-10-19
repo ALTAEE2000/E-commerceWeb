@@ -33,8 +33,13 @@ class Languages extends Model
         return $qurey->where('active', 1);
     }
 
-    public function getActiveAttribute($val)
+    // public function getActiveAttribute($val) //this will add for all data in the site global
+    // {
+    //     return   $val == 1 ? 'active' : 'not active';
+    // }
+
+    public function getActive()
     {
-        return   $val == 1 ? 'active' : 'not active';
+        return   $this->active == 1 ? 'active' : 'not active'; // this is will add gust when you  clalled it
     }
 }

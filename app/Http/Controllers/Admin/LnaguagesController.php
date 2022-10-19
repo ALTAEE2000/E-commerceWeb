@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\languagesReqeuest;
 use App\Models\Languages;
+use Exception;
 use Illuminate\Http\Request;
 use JetBrains\PhpStorm\Language;
+use PhpParser\Node\Expr\FuncCall;
 
 class LnaguagesController extends Controller
 {
@@ -43,12 +45,29 @@ class LnaguagesController extends Controller
 
         $languages = Languages::find($id);
         if (!$languages) {
-            redirect()->back();
+            return  redirect()->back();
         } else {
             return view('Dashboard.languages.edit', compact('languages'));
         }
     }
-    public function update()
+    public function update($id, languagesReqeuest $request)
     {
+
+
+        try {
+            $languages = Languages::find($id);
+            if (!$languages) {
+                return redirect()->route('admin.languages.edit', $id);
+            }
+            $languages->update($request->except('_token'));
+            return redirect()->route('admin.languages')->with(['success' => 'succrss to udapte data ']);
+        } catch (Exception $e) {
+            return redirect()->route('admin.languages.edit', $id);
+        }
+    }
+    public function delete($id)
+    {
+        $languages = Languages::find($id)->delete();
+        return redirect()->route('admin.languages')->with(['success' => 'success to update data']);
     }
 }

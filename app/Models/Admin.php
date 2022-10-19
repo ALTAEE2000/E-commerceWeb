@@ -22,7 +22,6 @@ class Admin extends Authenticatable
         'email',
         'password',
         'photo',
-
         'remember_me'
     ];
 

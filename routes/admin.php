@@ -47,7 +47,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/store', [LnaguagesController::class, 'store'])->name('languages.store');
 
         Route::get('/edit/{id}', [LnaguagesController::class, 'edit'])->name('languages.edit');
-        Route::put('/store', [LnaguagesController::class, 'update'])->name('languages.update');
+        Route::put('/update/{id}', [LnaguagesController::class, 'update'])->name('languages.update');
+        Route::delete('/delete/{id}', [LnaguagesController::class, 'delete'])->name('languages.delete');
     });
     //----------------------- end  lang route
 

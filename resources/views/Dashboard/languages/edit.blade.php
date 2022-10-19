@@ -41,8 +41,8 @@
                                 {{--  @include('admin.includes.alerts.errors')  --}}
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <form class="form" action="{{ route('admin.languages.update') }}" method="POST"
-                                            enctype="multipart/form-data">
+                                        <form class="form" action="{{ route('admin.languages.update', $languages->id) }}"
+                                            method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <div class="form-body">
@@ -74,7 +74,7 @@
                                                                 id="abbr" class="form-control"
                                                                 placeholder="ادخل اختصار اللغة     " name="abbr">
                                                             @error('abbr')
-                                                                <span class="text-danger">{{ $messages }}</span>
+                                                                <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
@@ -88,9 +88,9 @@
                                                         <div class="form-group">
                                                             <label for="projectinput2"> الاتجاة </label>
                                                             <select name="direction" class="select2 form-control">
-                                                                <optgroup label={{ $languages->direction }}">
-                                                                    <option
-                                                                        value="rtl"@if ($languages->direction == 'rtl') selected @endif>
+                                                                <optgroup label="{{ $languages->direction }}">
+                                                                    <option value="rtl"
+                                                                        @if ($languages->direction == 'rtl') selected @endif>
                                                                         من اليمين الي اليسار</option>
                                                                     <option value="rtl"
                                                                         @if ($languages->direction == 'ltr') selected @endif>من
@@ -98,7 +98,7 @@
                                                                 </optgroup>
                                                             </select>
                                                             @error('direction')
-                                                                <span class="text-danger">{{ $messages }}</span>
+                                                                <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
@@ -114,7 +114,7 @@
                                                             <label for="switcheryColor4" class="card-title ml-1">الحالة
                                                             </label>
                                                             @error('active')
-                                                                <span class="text-danger">{{ $messages }}</span>
+                                                                <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
