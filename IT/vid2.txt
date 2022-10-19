@@ -27,3 +27,14 @@ vid 9
 //----------
 create index for langauges and create model and controller for it
 after we create that we connect between the model and db and controller
+
+vid 10
+//------------
+-ends of crud for languages
+
+
+vid 13
+//-----------
+-create helper for local lang of website
+-create controller and model and do crud of maincategories
+-
