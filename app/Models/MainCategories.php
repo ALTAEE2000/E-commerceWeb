@@ -25,4 +25,13 @@ class MainCategories extends Model
     {
         return $qurey->where('active', 1);
     }
+    public function getActive()
+    {
+        return $this->active == 1 ? 'is active' : 'not active';
+    }
+
+    public function scopeSelection($query)
+    {
+        return $query->select('id', 'translation_lang', 'name', 'slug', 'photo', 'active');
+    }
 }

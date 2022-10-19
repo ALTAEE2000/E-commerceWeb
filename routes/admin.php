@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LnaguagesController;
+use App\Http\Controllers\Admin\MainCateController;
 use App\Http\Controllers\HomeController;
+use App\Models\MainCategories;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -52,4 +54,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
     //----------------------- end  lang route
 
+    //----------------------- start begin mainCate route
+    Route::group(['prefix' => 'main_categories'], function () {
+        Route::get('/', [MainCateController::class, 'index'])->name('mainCategories');
+        Route::get('/create', [MainCateController::class, 'create'])->name('categories.create');
+        Route::post('/store', [MainCateController::class, 'store'])->name('categories.store');
+
+        Route::get('/edit/{id}', [MainCateController::class, 'edit'])->name('categories.edit');
+        Route::put('/update/{id}', [MainCateController::class, 'update'])->name('categories.update');
+        Route::delete('/delete/{id}', [MainCateController::class, 'delete'])->name('categories.delete');
+    });
+    //----------------------- end mainLang
+
+});
+
+
+
+ROute::get('test-helper', function () {
+    return showName();
 });
