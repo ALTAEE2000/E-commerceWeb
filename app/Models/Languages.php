@@ -21,11 +21,9 @@ class Languages extends Model
     ];
     protected $table = 'languages';
 
-
-
     public function scopeSelection($query)
     {
-        return $query->select('name', 'abbr', 'directoin', 'active');
+        return $query->select('name', 'abbr', 'direction', 'active');
     }
 
     public function scopeActive($qurey)

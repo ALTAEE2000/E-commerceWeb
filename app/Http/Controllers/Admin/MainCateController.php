@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MainCateRequest;
 use App\Models\MainCategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -21,53 +22,39 @@ class MainCateController extends Controller
     public function create()
     {
 
-        return view('Dashboard.languages.create');
+        return view('Dashboard.mainCate.create');
     }
-    /*
-    // public function store(languagesReqeuest $request)
+
+    public function store(MainCateRequest $request)
     {
-        // validation of reqyest
-        // in request validation
 
-        // insert to db
+        //return $request;
 
-        try {
-            // $languages = Languages::create($request->except(['_token']));
-            return redirect()->route('admin.languages.create')->with(['success' => 'this is success']);
-        } catch (\Exception $e) {
-            return redirect()->route('admin.languages.create')->with(['errors' => 'this is erroros']);
+        $main_categories = collect($request->category);
+
+        $filter = $main_categories->filter(function ($value, $key) {
+            return $value['abbr'] == get_defualt_lang();
+        });
+
+
+        $categories = $main_categories->filter(function ($value, $key) {
+            return $value['abbr'] != get_defualt_lang();
+        });
+
+        $default_category = array_values($filter->all())[0];
+
+        $filePath = "";
+        if ($request->has('photo')) {
+
+            $filePath = uploadImage('maincategories', $request->photo);
         }
-    }
 
-    public function edit($id)
-    {
-
-        $languages = Languages::find($id);
-        if (!$languages) {
-            return  redirect()->back();
-        } else {
-            return view('Dashboard.languages.edit', compact('languages'));
-        }
+        return $default_category_id = MainCategories::insertGetId([
+            'translation_lang' => $default_category['abbr'],
+            'translation_of' => 0,
+            'name' => $default_category['name'],
+            'slug' => $default_category['name'],
+            'photo' => $filePath
+        ]);
     }
-    public function update($id, languagesReqeuest $request)
-    {
-
-
-        try {
-            $languages = Languages::find($id);
-            if (!$languages) {
-                return redirect()->route('admin.languages.edit', $id);
-            }
-            $languages->update($request->except('_token'));
-            return redirect()->route('admin.languages')->with(['success' => 'succrss to udapte data ']);
-        } catch (Exception $e) {
-            return redirect()->route('admin.languages.edit', $id);
-        }
-    }
-    public function delete($id)
-    {
-        $languages = Languages::find($id)->delete();
-        return redirect()->route('admin.languages')->with(['success' => 'success to update data']);
-    }
-    */
 }

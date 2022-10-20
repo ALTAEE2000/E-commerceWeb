@@ -12,7 +12,7 @@
                                 </li>
                                 <li class="breadcrumb-item"><a href="{{ route('admin.languages') }}"> أللغات </a>
                                 </li>
-                                <li class="breadcrumb-item active">إضافة لغة
+                                <li class="breadcrumb-item active">تعديل لغة
                                 </li>
                             </ol>
                         </div>
@@ -37,8 +37,8 @@
                                         </ul>
                                     </div>
                                 </div>
-                                {{--  @include('admin.includes.alerts.success')  --}}
-                                {{--  @include('admin.includes.alerts.errors')  --}}
+                                @include('dashboard.includes.alerts.success')
+                                @include('dashboard.includes.alerts.errors')
                                 <div class="card-content collapse show">
                                     <div class="card-body">
                                         <form class="form" action="{{ route('admin.languages.update', $languages->id) }}"
@@ -46,40 +46,34 @@
                                             @csrf
                                             @method('PUT')
                                             <div class="form-body">
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات الجمعية </h4>
+                                                <h4 class="form-section"><i class="ft-home"></i> بيانات اللغة </h4>
 
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="projectinput1"> اسم اللغة </label>
-                                                            <input type="text" value="{{ $languages->name }}"
-                                                                id="name" class="form-control"
+                                                            <input type="text" id="name" class="form-control"
+                                                                value="{{ $languages->name }}"
                                                                 placeholder="ادخل اسم اللغة  " name="name">
                                                             @error('name')
-                                                                <span class="text-danger">{{ $messages }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-
-
-                                                </div>
-
-
-                                                <div class="row">
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1"> الاختصار </label>
-                                                            <input type="text" value="{{ $languages->abbr }}"
-                                                                id="abbr" class="form-control"
-                                                                placeholder="ادخل اختصار اللغة     " name="abbr">
-                                                            @error('abbr')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
                                                     </div>
 
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="projectinput1"> أختصار اللغة </label>
+                                                            <input type="text" value="{{ $languages->abbr }}"
+                                                                id="name" class="form-control"
+                                                                placeholder="ادخل أختصار اللغة  " name="abbr">
+                                                            @error('abbr')
+                                                                <span class="text-danger">{{ $message }} </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
                                                 </div>
+
 
 
                                                 <div class="row">
@@ -88,11 +82,11 @@
                                                         <div class="form-group">
                                                             <label for="projectinput2"> الاتجاة </label>
                                                             <select name="direction" class="select2 form-control">
-                                                                <optgroup label="{{ $languages->direction }}">
+                                                                <optgroup label="من فضلك أختر اتجاه اللغة ">
                                                                     <option value="rtl"
-                                                                        @if ($languages->direction == 'rtl') selected @endif>
-                                                                        من اليمين الي اليسار</option>
-                                                                    <option value="rtl"
+                                                                        @if ($languages->direction == 'rtl') selected @endif>من
+                                                                        اليمين الي اليسار</option>
+                                                                    <option value="ltr"
                                                                         @if ($languages->direction == 'ltr') selected @endif>من
                                                                         اليسار الي اليمين</option>
                                                                 </optgroup>
@@ -110,9 +104,10 @@
                                                         <div class="form-group mt-1">
                                                             <input type="checkbox" value="1" name="active"
                                                                 id="switcheryColor4" class="switchery" data-color="success"
-                                                                @if ($languages->active == 1) checked @endif>
+                                                                @if ($languages->active == 1) checked @endif />
                                                             <label for="switcheryColor4" class="card-title ml-1">الحالة
                                                             </label>
+
                                                             @error('active')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
@@ -128,7 +123,7 @@
                                                     <i class="ft-x"></i> تراجع
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> حفظ
+                                                    <i class="la la-check-square-o"></i> تحديث
                                                 </button>
                                             </div>
                                         </form>
@@ -142,6 +137,4 @@
             </div>
         </div>
     </div>
-    langcreate.txt
-    جارٍ عرض langcreate.txt.
 @endsection

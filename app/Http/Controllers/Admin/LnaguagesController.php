@@ -59,6 +59,11 @@ class LnaguagesController extends Controller
             if (!$languages) {
                 return redirect()->route('admin.languages.edit', $id);
             }
+
+            if (!$request->has('active'))
+                $request->request->add(['active' => 0]);
+
+
             $languages->update($request->except('_token'));
             return redirect()->route('admin.languages')->with(['success' => 'succrss to udapte data ']);
         } catch (Exception $e) {
