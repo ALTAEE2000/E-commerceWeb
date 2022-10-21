@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MainCateRequest;
 use App\Models\MainCategories;
+use DeepCopy\Filter\Filter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 
@@ -28,20 +29,18 @@ class MainCateController extends Controller
     public function store(MainCateRequest $request)
     {
 
-        //return $request;
 
         $main_categories = collect($request->category);
 
-        $filter = $main_categories->filter(function ($value, $key) {
-            return $value['abbr'] == get_defualt_lang();
+        $filter = $main_categories->filter(function ($val, $key) {
+            return $val['abbr'] == get_defualt_lang();
         });
 
-
+        $default_category = $filter;
         $categories = $main_categories->filter(function ($value, $key) {
             return $value['abbr'] != get_defualt_lang();
         });
 
-        $default_category = array_values($filter->all())[0];
 
         $filePath = "";
         if ($request->has('photo')) {
