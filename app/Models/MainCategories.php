@@ -34,4 +34,10 @@ class MainCategories extends Model
     {
         return $query->select('id', 'translation_lang', 'name', 'slug', 'photo', 'active');
     }
+
+
+    public function getPhotoAttribute($val)
+    {
+        return  $val !== null ? '/public/assets/images/' . $val : '';
+    }
 }

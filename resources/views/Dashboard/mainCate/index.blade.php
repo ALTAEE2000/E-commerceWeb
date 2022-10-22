@@ -11,7 +11,8 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">dashboard</a>
                                 </li>
-                                <li class="breadcrumb-item active"> main categories
+                                <li class="breadcrumb-item active">
+                                    <a href="{{ route('admin.mainCategories') }}">main categories</a>
                                 </li>
                             </ol>
                         </div>
@@ -42,11 +43,13 @@
 
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
-                                        <table class="table display nowrap table-striped table-bordered ">
+                                        <table
+                                            class="table  display nowrap table-striped table-bordered scroll-horizontal ">
                                             <thead>
                                                 <tr>
-                                                    <th> الاسم</th>
+                                                    <th> القسم</th>
                                                     <th>الاختصار</th>
+                                                    <th>الصورة</th>
                                                     <th>الحالة</th>
                                                     <th>الإجراءات</th>
                                                 </tr>
@@ -57,7 +60,10 @@
                                                     @foreach ($mainCate as $item)
                                                         <tr>
                                                             <td>{{ $item->name }}</td>
-                                                            <td>{{ $item->translation_lang }}</td>
+                                                            <td>{{ get_defualt_lang() }}</td>
+                                                            <td><img src="/storage/{{ $item->photo }}" alt="" />
+                                                            </td>
+
                                                             <td>{{ $item->getActive() }}</td>
                                                             {{--  <td>
                                                                 <div class="btn-group" role="group"
