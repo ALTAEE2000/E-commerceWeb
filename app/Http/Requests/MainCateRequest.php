@@ -24,32 +24,11 @@ class MainCateRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required|mimes:png,jpg,jpeg', //mimes it means images\
-            // 'category' => 'required|array|min::1',
+            'photo' => 'required_without:id|mimes:jpg,jpeg,png',
+            'category' => 'required|array|min:1',
             'category.*.name' => 'required',
             'category.*.abbr' => 'required',
-            'category.*.active' => 'required',
-
-
+            //'category.*.active' => 'required',
         ];
     }
-
-    // public function messages()
-    // {
-    //     return [
-    //         'name.required' => 'name is very required',
-    //         'abbr.required' => 'this is required',
-    //         'active.required' => 'this fields is required',
-    //         'direction.required' => 'this is very required',
-
-    //         'name.string' => 'name should be string',
-    //         'name.max' => 'dont be max long 100',
-    //         'active.in' => 'the number  is not correct',
-
-    //         'abbr.max' => 'this is should be increase more than 10',
-
-
-
-    //     ];
-    // }
 }

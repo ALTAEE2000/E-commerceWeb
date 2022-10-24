@@ -39,6 +39,12 @@ vid 13
 -create controller and model and do crud of maincategories
 -
 
+vid 14
+//--------
+-create request for maincategories and make file path for imgs on helper file
+-create file for add categories
+
+
 vid 17 - 18
 //-----------
 review again because it is very hard

@@ -45,9 +45,10 @@ return [
         ],
         'maincategories' => [
             'driver' => 'local',
-            'root' => public_path() . '/assets/images/maincategories/',
-            'url' => env('APP_URL') . '/public',
+            'root' => storage_path('maincategories'),
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
+            'throw' => false,
         ],
 
         's3' => [

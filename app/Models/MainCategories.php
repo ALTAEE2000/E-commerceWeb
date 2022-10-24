@@ -38,6 +38,6 @@ class MainCategories extends Model
 
     public function getPhotoAttribute($val)
     {
-        return  $val !== null ? '/public/assets/images/' . $val : '';
+        return  $val !== null ? '/publicassets/images/admin/' .  $val : '';
     }
 }

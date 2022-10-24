@@ -88,4 +88,37 @@ class MainCateController extends Controller
             return redirect()->route('admin.mainCategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
+
+    public function edit($mainCategory)
+    {
+        $mainCategory = MainCategories::selection()->find($mainCategory);
+        if (!$mainCategory) {
+            return redirect()->route('admin.mainCategories')->with(['errors' => 'this is not have this section']);
+        }
+        return view('Dashboard.mainCate.edit', compact('mainCategory'));
+    }
+
+    public function update($mainCategory_id, MainCateRequest $request)
+    {
+        //validtion
+
+
+
+        //find main id
+        $mainCategory = MainCategories::find($mainCategory_id);
+
+        $category = array_values($request->category)[0];
+        if (!$mainCategory) {
+            return redirect()->route('admin.mainCategories')->with(['errors' => 'this is not have this section']);
+        }
+
+        MainCategories::where('id', $mainCategory_id)->update([
+            'name' => $category['name'],
+        ]);
+        return redirect()->back()->with(['success' => 'this is updated']);
+
+
+        //update
+        // MainCategories::where('id', $mainca)->find($maincat_id);
+    }
 }

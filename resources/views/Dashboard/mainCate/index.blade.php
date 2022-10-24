@@ -43,8 +43,7 @@
 
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
-                                        <table
-                                            class="table  display nowrap table-striped table-bordered scroll-horizontal ">
+                                        <table class="table display nowrap table-striped table-bordered scroll-horizontal ">
                                             <thead>
                                                 <tr>
                                                     <th> القسم</th>
@@ -65,14 +64,14 @@
                                                             </td>
 
                                                             <td>{{ $item->getActive() }}</td>
-                                                            {{--  <td>
+                                                            <td>
                                                                 <div class="btn-group" role="group"
                                                                     aria-label="Basic example">
-                                                                    <a href="{{ route('admin.languages.edit', $language->id) }}"
+                                                                    <a href="{{ route('admin.categories.edit', $item->id) }}"
                                                                         class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
 
 
-                                                                    <form
+                                                                    {{--  <form
                                                                         action="{{ route('admin.languages.delete', $language->id) }}"
                                                                         method="POST">
                                                                         @csrf
@@ -80,11 +79,11 @@
                                                                         <button type="submit"
                                                                             href="{{ route('admin.languages.delete', $language->id) }}"
                                                                             class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">حذف</button>
-                                                                    </form>
+                                                                    </form>  --}}
 
 
                                                                 </div>
-                                                            </td>  --}}
+                                                            </td>
                                                         </tr>
                                                     @endforeach
                                                 @endisset

@@ -60,8 +60,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/create', [MainCateController::class, 'create'])->name('categories.create');
         Route::post('/store', [MainCateController::class, 'store'])->name('categories.store');
 
-        Route::get('/edit/{id}', [MainCateController::class, 'edit'])->name('categories.edit');
-        Route::put('/update/{id}', [MainCateController::class, 'update'])->name('categories.update');
+        Route::get('/edit/{mainCategory}', [MainCateController::class, 'edit'])->name('categories.edit');
+        Route::post('/update/{mainCategory_id}', [MainCateController::class, 'update'])->name('categories.update');
         Route::delete('/delete/{id}', [MainCateController::class, 'delete'])->name('categories.delete');
     });
     //----------------------- end mainLang

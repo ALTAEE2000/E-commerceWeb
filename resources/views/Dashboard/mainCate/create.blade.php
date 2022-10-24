@@ -63,7 +63,7 @@
                                                 @if (get_languages()->count() > 0)
                                                     @foreach (get_languages() as $index => $lang)
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label for="projectinput1"> اسم القسم -
                                                                         {{ __('messages.' . $lang->abbr) }} </label>
@@ -76,12 +76,12 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-6 hidden">
                                                                 <div class="form-group">
                                                                     <label for="projectinput1"> أختصار اللغة-
                                                                         {{ __('messages.' . $lang->abbr) }} </label>
-                                                                    <input type="text" value="" id="name"
-                                                                        class="form-control" placeholder="  "
+                                                                    <input type="text" value="{{ $lang->abbr }}"
+                                                                        id="name" class="form-control" placeholder="  "
                                                                         name="category[{{ $index }}][abbr]">
                                                                     @error("category.$index.abbr")
                                                                         <span class="text-danger"> هذا الحقل مطلوب</span>
@@ -89,12 +89,7 @@
                                                                 </div>
                                                             </div>
 
-
-
-
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-12">
                                                                 <div class="form-group mt-1">
                                                                     <input type="checkbox" value="1"
                                                                         name="category[{{ $index }}][active]"
@@ -109,6 +104,7 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
+
                                                         </div>
                                                     @endforeach
                                                 @endif

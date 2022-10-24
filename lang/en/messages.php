@@ -15,6 +15,6 @@ return [
 
     'en' => 'english',
     'ar' => 'arabic',
-    'fr' => 'الفرنسية'و
+    'fr' => 'french',
 
 ];
