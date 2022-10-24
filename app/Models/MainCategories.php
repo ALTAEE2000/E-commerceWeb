@@ -32,12 +32,17 @@ class MainCategories extends Model
 
     public function scopeSelection($query)
     {
-        return $query->select('id', 'translation_lang', 'name', 'slug', 'photo', 'active');
+        return $query->select('id', 'translation_of',  'translation_lang', 'name', 'slug', 'photo', 'active');
     }
 
 
     public function getPhotoAttribute($val)
     {
-        return  $val !== null ? '/publicassets/images/admin/' .  $val : '';
+        return  $val !== null ? $val : '';
+    }
+
+    public function categories()
+    {
+        return  $this->hasMany(self::class, 'translation_of');
     }
 }

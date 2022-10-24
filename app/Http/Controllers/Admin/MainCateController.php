@@ -49,6 +49,10 @@ class MainCateController extends Controller
                 $filePath = uploadImage('maincategories', $request->photo);
             }
 
+            if (!$request->has('active')) {
+                $request->request->add(['active' => 0]);
+            }
+
             DB::beginTransaction();
 
             $default_category_id = MainCategories::insertGetId([
@@ -91,7 +95,7 @@ class MainCateController extends Controller
 
     public function edit($mainCategory)
     {
-        $mainCategory = MainCategories::selection()->find($mainCategory);
+        $mainCategory = MainCategories::with('categories')->selection()->find($mainCategory);
         if (!$mainCategory) {
             return redirect()->route('admin.mainCategories')->with(['errors' => 'this is not have this section']);
         }
@@ -100,22 +104,54 @@ class MainCateController extends Controller
 
     public function update($mainCategory_id, MainCateRequest $request)
     {
-        //validtion
+
+        try {
+
+            // validate
+            // this validate inside request
+
+            // get data
+            $mainCategory = MainCategories::find($mainCategory_id);
+            $category = array_values($request->category)[0];
+
+            // make some conditions
+            if (!$mainCategory) {
+                return redirect()->route('admin.mainCategories')->with(['errors' => 'this is not have this section']);
+            }
+            if (!$request->has('category.0.active')) {
+                $request->request->add(['active' => 0]);
+            } else {
+                $request->request->add(['active' => 1]);
+            }
+
+            MainCategories::where('id', $mainCategory_id)->update([
+                'name' => $category['name'],
+                'active' => $category = $request->active,
+
+            ]);
+
+            // save imgs
+            // $filePath = $mainCategory->photo; //get last imgs and make it inside update
+            if ($request->has('photo')) {
+
+                $filePath = uploadImage('maincategories', $request->photo);
+                MainCategories::where('id', $mainCategory_id)->update([
+                    'photo' => $filePath,
+                ]);
+            }
 
 
-
-        //find main id
-        $mainCategory = MainCategories::find($mainCategory_id);
-
-        $category = array_values($request->category)[0];
-        if (!$mainCategory) {
-            return redirect()->route('admin.mainCategories')->with(['errors' => 'this is not have this section']);
+            return redirect()->back()->with(['success' => 'this is updated']);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['errors' => 'this is updated']);
         }
 
-        MainCategories::where('id', $mainCategory_id)->update([
-            'name' => $category['name'],
-        ]);
-        return redirect()->back()->with(['success' => 'this is updated']);
+
+
+
+
+        //validtion
+        //find main id
 
 
         //update
