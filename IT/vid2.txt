@@ -54,3 +54,19 @@ vid 19
 //--------
 -file path and images add to model
 -some cusomize on images and make it scrollabel it means responsive for all screens
+
+
+
+
+---vid 24-25 vendors
+-create model and controller for vendors
+-create folder vendors
+
+vid 26 - 27 - 28 - 29 - 30
+//--------
+-create create.blade
+-make create & store on vendors
+-get google map api
+-make  request for vendors
+-make  relation between the vendors & main_categories by id
+

@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LnaguagesController;
 use App\Http\Controllers\Admin\MainCateController;
+use App\Http\Controllers\Admin\VendorsController;
+
 use App\Http\Controllers\HomeController;
 use App\Models\MainCategories;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -65,6 +67,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('/delete/{id}', [MainCateController::class, 'delete'])->name('categories.delete');
     });
     //----------------------- end mainLang
+
+
+    //----------------------- start vendors mainCate route
+    Route::group(['prefix' => 'vendors'], function () {
+        Route::get('/', [VendorsController::class, 'index'])->name('vendors');
+        Route::get('/create', [VendorsController::class, 'create'])->name('vendors.create');
+        Route::post('/store', [VendorsController::class, 'store'])->name('vendors.store');
+        Route::get('/edit/{mainCategory}', [VendorsController::class, 'edit'])->name('vendors.edit');
+        Route::post('/update/{mainCategory_id}', [VendorsController::class, 'update'])->name('vendors.update');
+        Route::delete('/delete/{id}', [VendorsController::class, 'delete'])->name('vendors.delete');
+    });
+    //----------------------- end vendors
 
 });
 
